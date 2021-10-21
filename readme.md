@@ -1,4 +1,4 @@
-## GATSBY POST CLI
+## GATSBY TOOL CLI
 
 For creating new post easier
 
