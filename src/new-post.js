@@ -43,9 +43,13 @@ export async function promptNewPost(options) {
 export function createPost(options) {
     let todayDate = new Date().toISOString().slice(0, 10);
     const postTitle = options.title ? options.title : "new blank post";
-    const slugAlias = slug(todayDate + "-" + postTitle, "-").toLowerCase();
+    let slugPostAlias = slug(postTitle, "-").toLowerCase();
+    if(slugPostAlias.length > 60){
+        slugPostAlias = slugPostAlias.substring(0, 60);
+    }
+    const slugFolderAlias = slug(todayDate + "-" + slugPostAlias, "-").toLowerCase();
     const tag = options.tag;
-    const postPath = path.resolve(__dirname, defaultDir, slugAlias);
+    const postPath = path.resolve(__dirname, defaultDir, slugFolderAlias);
     console.log("path ", postPath);
 
     // create the new folder.
@@ -62,7 +66,7 @@ export function createPost(options) {
 
     createMarkdown({
         postPath: postPath,
-        slugAlias: slugAlias,
+        slugAlias: slugPostAlias,
         title: postTitle,
         tag: tag,
         created: todayDate,
