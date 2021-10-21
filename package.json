@@ -1,6 +1,6 @@
 {
   "name": "gatsby-tool-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI to create new post in gatsbyjs project",
   "author": "Kien Dinh (https://devgiangho.github.io)",
   "license": "MIT",
