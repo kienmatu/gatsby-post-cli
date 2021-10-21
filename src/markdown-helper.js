@@ -3,11 +3,11 @@ import fs from "fs";
 import path from "path";
 import postRaw from "./templates/post.js";
 
-export function createMarkdown({ postPath, slug, title, tag, created }) {
+export function createMarkdown({ postPath, slugAlias, title, tag, created }) {
     try {
         const rendered = Mustache.render(postRaw, {
             title,
-            slug,
+            slugAlias,
             tag,
             created,
             excerpt: "Lorem ipsum...",

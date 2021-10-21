@@ -1,8 +1,8 @@
 import inquirer from "inquirer";
-import slugify from "slugify";
 import fs from "fs";
 import { createMarkdown } from "./markdown-helper";
 import path from "path";
+import slug from "slug";
 
 const defaultDir = path.resolve("content", "posts");
 
@@ -43,9 +43,9 @@ export async function promptNewPost(options) {
 export function createPost(options) {
     let todayDate = new Date().toISOString().slice(0, 10);
     const postTitle = options.title ? options.title : "new blank post";
-    const slug = slugify(todayDate + "-" + postTitle, "-").toLowerCase();
+    const slugAlias = slug(todayDate + "-" + postTitle, "-").toLowerCase();
     const tag = options.tag;
-    const postPath = path.resolve(__dirname, defaultDir, slug);
+    const postPath = path.resolve(__dirname, defaultDir, slugAlias);
     console.log("path ", postPath);
 
     // create the new folder.
@@ -62,7 +62,7 @@ export function createPost(options) {
 
     createMarkdown({
         postPath: postPath,
-        slug: slug,
+        slugAlias: slugAlias,
         title: postTitle,
         tag: tag,
         created: todayDate,
