@@ -1,0 +1,31 @@
+{
+  "name": "gatsby-post-cli",
+  "version": "1.0.0",
+  "description": "A CLI to create new post in gatsbyjs project",
+  "author": "Kien Dinh (https://devgiangho.github.io)",
+  "license": "MIT",
+  "main": "src/index.js",
+  "bin": {
+    "gpc-new": "bin/gpc-new"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "gatsby-post-cli",
+    "gpc",
+    "gatsby"
+  ],
+  "dependencies": {
+    "arg": "^5.0.1",
+    "esm": "^3.2.25",
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.0",
+    "mustache": "^4.2.0",
+    "slugify": "^1.6.1"
+  }
+}
