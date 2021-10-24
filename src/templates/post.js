@@ -1,7 +1,7 @@
 const raw = 
 `---
 title: "{{title}}"
-path: "{{slugAlias}}"
+path: "/{{slugAlias}}"
 tags: ["{{tag}}"]
 featuredImage: "index.png"
 excerpt: "{{excerpt}}"
