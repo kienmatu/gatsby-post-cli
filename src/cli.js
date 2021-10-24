@@ -1,5 +1,5 @@
-import arg from "arg";
 import { promptNewPost, createPost } from "./new-post";
+import { getPostFolder } from "./config-helper";
 
 export async function cli(args) {
     const defaultTemplate = "post";
@@ -7,6 +7,12 @@ export async function cli(args) {
         skipPrompts: false,
         template: defaultTemplate,
     };
-    options = await promptNewPost(options);
-    createPost(options);
+
+    const defaultDir = getPostFolder();
+    if (defaultDir) {
+        options = await promptNewPost(options);
+        createPost(options, defaultDir);
+    } else {
+        console.log("Config file created!");
+    }
 }

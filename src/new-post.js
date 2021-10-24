@@ -4,8 +4,11 @@ import { createMarkdown } from "./markdown-helper";
 import path from "path";
 import slug from "slug";
 
-const defaultDir = path.resolve("content", "posts");
-
+/**
+ * Prompt info question for the post
+ * @param {*} options
+ * @returns
+ */
 export async function promptNewPost(options) {
     if (options.skipPrompts) {
         return options;
@@ -40,17 +43,25 @@ export async function promptNewPost(options) {
     };
 }
 
-export function createPost(options) {
+/**
+ * Create new post
+ * @param {options} options 
+ * @param defaultDir default post dir
+ * @returns 
+ */
+export function createPost(options, defaultDir) {
     let todayDate = new Date().toISOString().slice(0, 10);
     const postTitle = options.title ? options.title : "new blank post";
     let slugPostAlias = slug(postTitle, "-").toLowerCase();
-    if(slugPostAlias.length > 60){
+    if (slugPostAlias.length > 60) {
         slugPostAlias = slugPostAlias.substring(0, 60);
     }
-    const slugFolderAlias = slug(todayDate + "-" + slugPostAlias, "-").toLowerCase();
+    const slugFolderAlias = slug(
+        todayDate + "-" + slugPostAlias,
+        "-"
+    ).toLowerCase();
     const tag = options.tag;
-    const postPath = path.resolve(__dirname, defaultDir, slugFolderAlias);
-    console.log("path ", postPath);
+    const postPath = path.resolve(defaultDir, slugFolderAlias);
 
     // create the new folder.
     try {
@@ -71,5 +82,4 @@ export function createPost(options) {
         tag: tag,
         created: todayDate,
     });
-    console.log("Created: " + postTitle);
 }

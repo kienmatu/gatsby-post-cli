@@ -15,8 +15,8 @@ export function createMarkdown({ postPath, slugAlias, title, tag, created }) {
 
         const markdownPath = path.resolve(postPath, "index.md");
 
-        fs.writeFile(markdownPath, rendered, function (err) {
-            console.log(err);
+        fs.writeFile(markdownPath, rendered, function () {
+            console.log("Created: " + slugAlias);
         });
     } catch (err) {
         console.error(err);

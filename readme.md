@@ -2,18 +2,21 @@
 
 For creating new post easier
 
-##### Project structure should be:
+##### Default project structure should be:
 
 ```
 |-- /content
-    |-- /pages
     |-- /posts
 ```
 
-New post will be placed at: /posts/yyyy-mm-dd-title-slug
+After the first run, edit the config at **gatsby-tool-cli.json**
+
+New post will be placed at: /{{postsFolder}}/yyyy-mm-dd-title-slug
 
 ### Command:
 
 ```
 gtc-new : create new post
 ```
+
+Run the command above first time to init the config file, then edit it.
