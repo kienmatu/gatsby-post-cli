@@ -13,7 +13,7 @@ For creating new post easier
 
 After the first run, edit the config at **gatsby-tool-cli.json**
 
-New post will be placed at: /{{postsFolder}}/yyyy-mm-dd-title-slug
+New post will be placed at: /{{postsFolder}}/yyyy/mm-dd-title-slug
 
 ### Command:
 
@@ -22,3 +22,7 @@ gtc-new : create new post
 ```
 
 Run the command above first time to init the config file, then edit it.
+
+```bash
+node ./bin/gtc-new.js
+```

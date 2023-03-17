@@ -50,23 +50,27 @@ export async function promptNewPost(options) {
  * @returns 
  */
 export function createPost(options, defaultDir) {
-    let todayDate = new Date().toISOString().slice(0, 10);
+    const todayDate = new Date().toISOString();
+    const currentYear = todayDate.slice(0, 4);
+    const dayAndMonth = todayDate.slice(5, 10);
+
     const postTitle = options.title ? options.title : "new blank post";
     let slugPostAlias = slug(postTitle, "-").toLowerCase();
-    if (slugPostAlias.length > 60) {
-        slugPostAlias = slugPostAlias.substring(0, 60);
+    if (slugPostAlias.length > 75) {
+        slugPostAlias = slugPostAlias.substring(0, 75);
     }
     const slugFolderAlias = slug(
-        todayDate + "-" + slugPostAlias,
+        dayAndMonth + "-" + slugPostAlias,
         "-"
     ).toLowerCase();
+
     const tag = options.tag;
-    const postPath = path.resolve(defaultDir, slugFolderAlias);
+    const postPath = path.resolve(defaultDir, currentYear, slugFolderAlias);
 
     // create the new folder.
     try {
         if (!fs.existsSync(postPath)) {
-            fs.mkdirSync(postPath);
+            fs.mkdirSync(postPath, {recursive:true});
         } else {
             console.log("The post is existed.");
             return;
