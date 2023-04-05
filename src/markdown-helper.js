@@ -13,7 +13,7 @@ export function createMarkdown({ postPath, slugAlias, title, tag, created }) {
             excerpt: "Lorem ipsum...",
         });
 
-        const markdownPath = path.resolve(postPath, "index.md");
+        const markdownPath = path.resolve(postPath, "_index.md");
 
         fs.writeFile(markdownPath, rendered, function () {
             console.log("Created: " + slugAlias);
